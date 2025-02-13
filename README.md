@@ -62,3 +62,35 @@ Tóm lại, Active Directory cung cấp một số chức năng chính bao gồm
 #### Active Directory Objects
 
 ![Active Directory Objects](images/active_directory_objects.png)
+
+Người dùng, cơ sở dữ liệu, nhóm, máy móc, chính sách bảo mật, máy in và máy chủ sẽ được sắp xếp dưới dạng các đối tượng. Mỗi đối tượng sẽ có tập hợp các đặc điểm riêng biệt.
+
+Ví dụ: đối tượng người dùng có các thuộc tính như Logon Name, First Name, Last Name,… và đối tượng máy tính bao gồm các thuộc tính như computer name cùng description.
+
+Ngoài ra, một số đối tượng cụ thể bao gồm nhiều đối tượng khác nhau sẽ được gọi là “container”, ví dụ: domain là container chứa nhiều computer account và user.
+
+#### Active Directory Schema
+![Active Directory Schema](images/active_directory_schema.png)
+AD Schema là Database được lưu trữ trong Active Directory. Schema sẽ định nghĩa các đối tượng trong Active Directory.
+
+Schema về cơ bản là một chuỗi các định nghĩa chỉ rõ các loại mục và thông tin được kết nối với các đối tượng được lưu trữ trong Active Directory.
+
+Schema được lưu giống như cách lưu Objects. Schema có hai loại: Schema Class objects và Schema Attribute.
+
+#### Active Directory Components
+
+Active Directory Components được sử dụng và triển khai để phát triển các mô hình phù hợp với mục đích kinh doanh trong mô hình mạng doanh nghiệp hiện đại.
+
+### Cách thức hoạt động:
+
+AD DS dựa trên một số giao thức và tiêu chuẩn đã được thiết lập, bao gồm LDAP (Lightweight Directory Access Protocol), Kerberos và DNS (Domain Name System).
+
+## Microsoft Exchange Server
+
+Microsoft Exchange Server là một máy chủ email ảo cho phép doanh nghiệp thực hiện các thao tác gửi-nhận thư, quản lý Danh bạ và Lịch.
+
+Tất cả các thiết bị di động, máy tính để bàn, máy tính bảng và hệ thống dựa trên web đều có thể truy cập vào nền tảng nhắn tin với Exchange Server của Microsoft.
+
+Sử dụng giao thức truy xuất email độc quyền của Microsoft – MAPI – để kết nối với các ứng dụng email, Exchange Server còn hỗ cho POP3, IMAP đồng thời dùng giao thức SMTP để giao tiếp với các máy chủ thư Internet khác.
+
+Hệ thống máy chủ Exchange được cấp phép phần mềm tại chỗ và phần mềm dưới dạng dịch vụ (SaaS).
