@@ -171,3 +171,31 @@ Sử dụng công cụ metasploit để tấn công.
 
 #### Bước 2: Thực hiện tấn công và chiếm quyền shell.
 
+![alt text](images/9_rce.png)
+
+Nhận thấy sau khi tấn công thành công ,sử dụng câu lệnh getuid cho biết thông tin người dùng hiện tại mà payload đang chạy là NT AUTHORITY\SYSTEM.
+
+- Lệnh sysinfo: cho biết thông tin cơ bản về máy đang bị điều khiển. Lệnh trên cho thấy tên máy là Exchange, tên miền là ACKNOWLEDGE.
+
+#### Bước 4: Hậu khai thác, lây nhiễm sang các máy tính khác và kiểm soát máy domain controller
+
+Tạo mã độc bằng công cụ msfconsole. Vì máy Domain controller không kết nối ra bên ngoài internet nên ta sẽ kết nối thông qua máy chủ Exchange.
+
+![alt text](images/10_malware_payload.png)
+
+Phát tán mã độc thông qua cơ chế phising qua bản vá cập nhật lỗ hổng của Microsoft Exchange server.
+
+Hình bên dưới thể hiện sơ đồ lây nhiễm. Sau khi thực hiện kiểm soát được máy tính Email Exchange server, sẽ lây nhiễm đến máy domain controller qua cơ chế phát tán mã độc từ máy đã được kiểm soát.  
+
+![alt text](images/12_compromised_model.png)
+
+#### Bước 5: Sử dụng Netcat để lắng nghe kết nối từ máy admin, khi admin vô tình kích hoạt phiên bản cập nhật exchange server có chứa mã độc.
+
+![alt text](images/13_netcat_listening.png)
+
+Tại máy email Exchange server sẽ nhận được kết nối đến và kiểm soát thành công máy domain controller.
+
+![alt text](images/14_rce_domain_controller.png)
+
+
+
