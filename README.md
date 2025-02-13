@@ -163,11 +163,11 @@ Trong mô hình mạng Active directory trên có tên miền là Acknowledge.co
 
 Sử dụng công cụ metasploit để tấn công.
 
-* Bước 1: Chọn payload và thêm các tham số cần thiết bao gồm: USERNAME, PASSWORD, tên miền máy exchange.
+#### Bước 1: Chọn payload và thêm các tham số cần thiết bao gồm: USERNAME, PASSWORD, tên miền máy exchange.
 
 - Payload mặc định là reverse_tcp.
 
 ![alt text](images/8_metasploit_payload.png)
 
-* Bước 2: Thực hiện tấn công và chiếm quyền shell.
+#### Bước 2: Thực hiện tấn công và chiếm quyền shell.
 
