@@ -61,7 +61,7 @@ Tóm lại, Active Directory cung cấp một số chức năng chính bao gồm
 
 #### Active Directory Objects
 
-![Active Directory Objects](images/active_directory_objects.png)
+![Active Directory Objects](images/1_active_directory_objects.png)
 
 Người dùng, cơ sở dữ liệu, nhóm, máy móc, chính sách bảo mật, máy in và máy chủ sẽ được sắp xếp dưới dạng các đối tượng. Mỗi đối tượng sẽ có tập hợp các đặc điểm riêng biệt.
 
@@ -70,7 +70,7 @@ Ví dụ: đối tượng người dùng có các thuộc tính như Logon Name,
 Ngoài ra, một số đối tượng cụ thể bao gồm nhiều đối tượng khác nhau sẽ được gọi là “container”, ví dụ: domain là container chứa nhiều computer account và user.
 
 #### Active Directory Schema
-![Active Directory Schema](images/active_directory_schema.png)
+![Active Directory Schema](images/2_active_directory_schema.png)
 AD Schema là Database được lưu trữ trong Active Directory. Schema sẽ định nghĩa các đối tượng trong Active Directory.
 
 Schema về cơ bản là một chuỗi các định nghĩa chỉ rõ các loại mục và thông tin được kết nối với các đối tượng được lưu trữ trong Active Directory.
@@ -122,7 +122,7 @@ Metasploit được xây dựng từ ngôn ngữ hướng đối tượng Perl, 
 
 ## Lỗ hổng CVE-2022-41040 và CVE-2022-40182 - ProxyNotShell
 
-![attack_process](images/attack_process.png)
+![attack_process](images/3_attack_process.png)
 
 Bước đầu tiên trong cuộc tấn công này là khai thác CVE-2022-41040 để có quyền truy cập vào điểm cuối API PowerShell.
 
@@ -134,6 +134,40 @@ Quyền truy cập này cho phép kẻ tấn công thực thi các lệnh PowerS
 
 Kẻ tấn công khởi tạo shell trên hệ thống để thực thi tập lệnh PowerShell tiếp theo thông qua Windows Remote Management (PsRemoting)
 
-![request_xml_post](images/request_xml_post.png)
+![request_xml_post](images/4_request_xml_post.png)
 
 Sau đó, kẻ tấn công khai thác lỗ hổng thứ hai – CVE-2022-41082 . Bằng cách sử dụng PowerShell Remote, kẻ tấn công sẽ gửi yêu cầu tạo sổ địa chỉ, truyền dữ liệu được mã hóa và tuần tự hóa với một tải trọng đặc biệt làm tham số. Trong PoC được xuất bản, dữ liệu được mã hóa này chứa một tiện ích có tên System.UnitySerializationHolder tạo ra một đối tượng của lớp System.Windows.Markup.XamlReader . Lớp này xử lý dữ liệu XAML từ một payload, tạo ra một đối tượng mới của lớp System.Diagnostics và chứa lệnh gọi phương thức để mở một quy trình mới trên hệ thống đích.
+
+![request_xml_post_newProcess](images/5_request_xml_post_newProcess.png)
+
+![payload_process](images/6_request_xml_post_newProcess.png)
+
+### Hậu khai thác ProxyNotShell
+
+- Reconnaissance (users, groups, domains)
+
+- Remote process injection
+
+- Reverse shell
+
+
+## Mô hình mạng tấn công:
+![network_enterprise](images/7_network_enterprise.png)
+
+### Chi tiết:
+
+Trong mô hình mạng Active directory trên có tên miền là Acknowledge.com. Gồm 2 máy 1 là Domain Controllor có IP là 10.8.2.100 và 1 máy là Microsoft Exchange Server có IP là 10.8.2.200. Máy Kali Linux là máy có tài khoản đăng nhập chứng thực sẽ được dùng để khai thác hai lỗ hổng CVE-2022-41040 và CVE-2022-40182. Sau đó RCE(Remote code execution) máy Microsoft email exchange server có chứa lỗ hổng. Sau đó kiểm soát được máy Microsoft Exchaneg server. Từ đó leo thang đặc quyền rồi lây nhiễm quyền kiểm soát sang các máy khác trong mạng (Lateral movement) bằng mã độc. 
+
+
+### Các bước thực hiện:
+
+Sử dụng công cụ metasploit để tấn công.
+
+* Bước 1: Chọn payload và thêm các tham số cần thiết bao gồm: USERNAME, PASSWORD, tên miền máy exchange.
+
+- Payload mặc định là reverse_tcp.
+
+![alt text](images/8_metasploit_payload.png)
+
+* Bước 2: Thực hiện tấn công và chiếm quyền shell.
+
