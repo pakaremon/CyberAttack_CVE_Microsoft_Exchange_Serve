@@ -94,3 +94,15 @@ Tất cả các thiết bị di động, máy tính để bàn, máy tính bản
 Sử dụng giao thức truy xuất email độc quyền của Microsoft – MAPI – để kết nối với các ứng dụng email, Exchange Server còn hỗ cho POP3, IMAP đồng thời dùng giao thức SMTP để giao tiếp với các máy chủ thư Internet khác.
 
 Hệ thống máy chủ Exchange được cấp phép phần mềm tại chỗ và phần mềm dưới dạng dịch vụ (SaaS).
+
+### Các thành phần chính của Microsoft Exchange Server:
+
+Bốn thành phần chính của Microsoft Exchange Server gồm:
+
+· Information Store: Kho lưu trữ thông tin cũng như một vị trí để định vị và sắp xếp các email.
+
+· System Attendant: Hệ thống có khả năng tạo và quản lý các địa chỉ email.
+
+· SMTP (Simple Mail Transfer Protocol): Đây là thành phần quan trọng cho phép giao tiếp giữa các máy chủ.
+
+· Active Directory: phụ trách cập nhật thông tin hộp thư mới của System Attendant. Nó cũng quản lý các tài khoản người dùng và danh sách phân phối của riêng mình.
