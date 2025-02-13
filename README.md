@@ -106,3 +106,34 @@ Bốn thành phần chính của Microsoft Exchange Server gồm:
 · SMTP (Simple Mail Transfer Protocol): Đây là thành phần quan trọng cho phép giao tiếp giữa các máy chủ.
 
 · Active Directory: phụ trách cập nhật thông tin hộp thư mới của System Attendant. Nó cũng quản lý các tài khoản người dùng và danh sách phân phối của riêng mình.
+
+Sau khi đã định cấu hình máy chủ Exchange, bạn phải tạo tài khoản email cho mỗi người dùng. Mỗi tài khoản Email phải được thiết lập cấu hình riêng biệt cùng với phân quyền riêng. Sau khi người dùng đã được tạo, quản trị viên phải cấu hình các tùy chọn lọc. Exchange Server hỗ trợ ngăn chặn và lọc thư rác, vi rút và các email không mong muốn khác. Các tài khoản IP được thiết kế để chặn một đối tượng cụ thể có thể chặn các tin nhắn đến.
+
+Nếu đã biết Microsoft Exchange Server là gì ta cũng nhận thấy tin nhắn gửi đến cũng có thể bị Exchange Server chặn. Hỗ trợ những email được chỉ định mới được chuyển đến, theo các chính sách của tổ chức. Email được gửi đến người nhận thích hợp sau khi được máy chủ Exchange xem xét và phê duyệt
+
+## Metasploit
+
+Metasploit Framework là một môi trường dùng để kiểm tra, tấn công và khai thác lỗi của các service.
+
+Metasploit được xây dựng từ ngôn ngữ hướng đối tượng Perl, với những component được viết bằng C, assembler, và Python. Metasploit có thể chạy trên hầu hết các hệ điều hành: Linux, Windows, MacOS
+
+
+# Cyber attack
+
+## Lỗ hổng CVE-2022-41040 và CVE-2022-40182 - ProxyNotShell
+
+![attack_process](images/attack_process.png)
+
+Bước đầu tiên trong cuộc tấn công này là khai thác CVE-2022-41040 để có quyền truy cập vào điểm cuối API PowerShell.
+
+Dựa vào lỗ hổng khi tính năng lọc dữ liệu đầu vào không đầy đủ trong cơ chế Autodiscover của Exchange. Kẻ tấn công có tổ hợp thông tin đăng nhập và mật khẩu đã biết cho tài khoản đã đăng ký, có thể có quyền truy cập vào điểm cuối đặc quyền của Exchange Server API ( https://% Exchange server domain% / powershell) .
+
+Quyền truy cập này cho phép kẻ tấn công thực thi các lệnh PowerShell trong môi trường Exchange trên máy chủ, chuyển payload thông qua giao thức XML SOAP.
+
+Ở bước tiếp theo, kẻ tấn công phải có quyền truy cập vào Web-Based Enterprise Management (WBEM) thông qua Giao thức WSMAN .
+
+Kẻ tấn công khởi tạo shell trên hệ thống để thực thi tập lệnh PowerShell tiếp theo thông qua Windows Remote Management (PsRemoting)
+
+![request_xml_post](images/request_xml_post.png)
+
+Sau đó, kẻ tấn công khai thác lỗ hổng thứ hai – CVE-2022-41082 . Bằng cách sử dụng PowerShell Remote, kẻ tấn công sẽ gửi yêu cầu tạo sổ địa chỉ, truyền dữ liệu được mã hóa và tuần tự hóa với một tải trọng đặc biệt làm tham số. Trong PoC được xuất bản, dữ liệu được mã hóa này chứa một tiện ích có tên System.UnitySerializationHolder tạo ra một đối tượng của lớp System.Windows.Markup.XamlReader . Lớp này xử lý dữ liệu XAML từ một payload, tạo ra một đối tượng mới của lớp System.Diagnostics và chứa lệnh gọi phương thức để mở một quy trình mới trên hệ thống đích.
