@@ -14,5 +14,4 @@ Exchange PowerShell.
 Như đã lưu ý trong báo cáo GTSC, cả hai lỗ hổng đều bị khai thác cùng nhau để tạo 
 backdoor trên máy chủ bị tấn công. 
 Link bài báo cáo của GTSC: 
-https://gteltsc.vn/blog/warning-new-attack-campaign-utilized-a-new-0day-rce
-vulnerability-on-microsoft-exchange-server-12715.html
+https://gteltsc.vn/blog/warning-new-attack-campaign-utilized-a-new-0day-rce-vulnerability-on-microsoft-exchange-server-12715.html
