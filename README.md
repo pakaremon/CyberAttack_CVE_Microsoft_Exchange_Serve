@@ -138,7 +138,6 @@ Kẻ tấn công khởi tạo shell trên hệ thống để thực thi tập l�
 
 Sau đó, kẻ tấn công khai thác lỗ hổng thứ hai – CVE-2022-41082 . Bằng cách sử dụng PowerShell Remote, kẻ tấn công sẽ gửi yêu cầu tạo sổ địa chỉ, truyền dữ liệu được mã hóa và tuần tự hóa với một tải trọng đặc biệt làm tham số. Trong PoC được xuất bản, dữ liệu được mã hóa này chứa một tiện ích có tên System.UnitySerializationHolder tạo ra một đối tượng của lớp System.Windows.Markup.XamlReader . Lớp này xử lý dữ liệu XAML từ một payload, tạo ra một đối tượng mới của lớp System.Diagnostics và chứa lệnh gọi phương thức để mở một quy trình mới trên hệ thống đích.
 
-![request_xml_post_newProcess](images/5_request_xml_post_newProcess.png)
 
 ![payload_process](images/6_request_xml_post_newProcess.png)
 
