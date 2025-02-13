@@ -57,4 +57,8 @@ Ví dụ:
 
 Tóm lại, Active Directory cung cấp một số chức năng chính bao gồm xác thực, ủy quyền, service thư mục, quản lý Group Policy và chức năng Domain Name System (DNS).
 
-![alt text](images/active_directory_objects.png)
+### Các thành phần của Active Directory:
+
+#### Active Directory Objects
+
+![Active Directory Objects](images/active_directory_objects.png)
